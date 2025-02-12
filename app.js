@@ -18,15 +18,15 @@
 const express = require('express')
 const app = express()
 const port = 3000
-// const postRouter = require('./routers/post.js')
+const postRouter = require('./routers/post.js')
 
 app.use(express.static('public'));
 
-// app.use("/posts.js", postRouter)
+app.use("/posts.js", postRouter)
 
-app.get('/', (req, res) => {
-    res.send('Server del mio blog')
-})
+// app.get('/', (req, res) => {
+//     res.send('Server del mio blog')
+// })
 
 app.listen(port, () => {
     console.log(`Server del mio blog`)
