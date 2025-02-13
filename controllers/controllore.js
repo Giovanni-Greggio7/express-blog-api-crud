@@ -5,13 +5,21 @@ function index (req, res) {
     //Inizialmente, il menu filtrato corrisponde a quello originale
     let filteredPosts = posts;
 
-    //Se la richiesta contiene un filtro, allora filtriamo il menu
-    if (req.query.id) {
-        const postId = parseInt(req.query.id); 
-        filteredPosts = posts.find(
-            post => post.id === postId
+    //Se la richiesta contiene un filtro, allora filtriamo l'array
+    //Filtriamo per "id"
+    // if (req.query.id) {
+    //     const postId = parseInt(req.query.id); 
+    //     filteredPosts = posts.find(
+    //         post => post.id === postId
+    //     );
+    // }
+
+     //Filtriamo per "tags"
+    if (req.query.tags) {
+        filteredPosts = posts.filter(
+            post => post.tags.includes(req.query.tags)
         );
-    }
+    } 
     res.json(filteredPosts)
 };
 // show
