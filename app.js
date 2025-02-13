@@ -22,6 +22,8 @@ const postRouter = require('./routers/post')
 
 app.use(express.static('public'));
 
+app.use(express.json());
+
 app.use("/posts.js", postRouter)
 
 // app.get('/', (req, res) => {

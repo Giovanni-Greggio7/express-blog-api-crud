@@ -40,7 +40,7 @@ function show (req, res) {
         //Restituiamo il json con altre informazioni
         return res.json({
             error: "Not Found",
-            message: "Post non trovata"
+            message: "Post non trovato"
         })
     }
 
@@ -50,11 +50,58 @@ function show (req, res) {
 
 // store
 function store (req, res) {
-    res.send('Creazione nuovo post');
-};
+
+    const newId = posts[posts.length - 1].id + 1;
+
+    // Creiamo un nuovo oggetto pizza
+    const newPost = {
+    id: newId,
+    title: req.body.title,
+    content: req.body.content,
+    image: req.body.image,
+    ingredients: req.body.tags
+    }
+
+    // Aggiungiamo la nuova pizza al menu
+    posts.push(newPost);
+
+    // controlliamo
+    console.log(posts);
+
+    // Restituiamo lo status corretto e la pizza appena creata
+    res.status(201);
+    res.json(newPost);;
+    };
+
 // update
 function update (req, res) {
-    res.send('Modifica integrale del post ' + req.params.id);
+
+    // recuperiamo l'id dall' URL e trasformiamolo in numero
+    const id = parseInt(req.params.id)
+
+    // cerchiamo il pizza tramite id
+    const post = posts.find(post => post.id === id);
+
+    // Piccolo controllo
+    if (!post) {
+      res.status(404);
+      return res.json({
+      error: "Not Found",
+      message: "Post non trovata"
+      });
+    }
+
+    // Aggiorniamo la pizza
+    post.name = req.body.name;
+    post.image = req.body.image;
+    post.tags = req.body.tags;
+
+   // Controlliamo il menu
+   console.log(posts)
+
+   // Restituiamo la pizza appena aggiornata
+   res.json(post);
+    
 };
 
 // modify
