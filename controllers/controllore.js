@@ -87,12 +87,13 @@ function update (req, res) {
       res.status(404);
       return res.json({
       error: "Not Found",
-      message: "Post non trovata"
+      message: "Post non trovato"
       });
     }
 
     // Aggiorniamo la pizza
-    post.name = req.body.name;
+    post.title = req.body.title;
+    post.content = req.body.content;
     post.image = req.body.image;
     post.tags = req.body.tags;
 
