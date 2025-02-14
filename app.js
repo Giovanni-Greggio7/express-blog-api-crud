@@ -23,12 +23,13 @@ const errorsHandler = require('./middlewares/errorsHandler.js');
 const notFound = require('./middlewares/notFound.js');
 
 app.use(express.static('public'));
-app.use("/post.js", errorsHandler);
-app.use("/post.js", notFound);
 
 app.use(express.json());
 
 app.use("/posts.js", postRouter)
+
+app.use(errorsHandler);
+app.use(notFound);
 
 // app.get('/', (req, res) => {
 //     res.send('Server del mio blog')
