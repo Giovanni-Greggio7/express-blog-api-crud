@@ -17,10 +17,17 @@
 
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const port = 3000
 const postRouter = require('./routers/post')
 const errorsHandler = require('./middlewares/errorsHandler.js');
 const notFound = require('./middlewares/notFound.js');
+
+app.use(cors(
+    {
+        origin: 'http://localhost:5173'
+    }    
+))
 
 app.use(express.static('public'));
 
